@@ -1,0 +1,893 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    overflow:hidden;
+    background:#000;
+}
+
+
+/* =====================================================
+   CURTAINS
+===================================================== */
+
+#curtain{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    pointer-events:none;
+}
+
+.curtain{
+    width:50%;
+    height:100%;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,.05) 0px,
+            rgba(255,255,255,.05) 7px,
+            rgba(0,0,0,.08) 7px,
+            rgba(0,0,0,.08) 18px
+        ),
+        linear-gradient(
+            to right,
+            #280006,
+            #8b0015,
+            #c00022,
+            #75000f,
+            #280006
+        );
+
+    box-shadow:
+        inset 0 0 80px rgba(0,0,0,.8);
+}
+
+.curtain.left{
+    animation:openLeft 2.5s ease-in-out forwards;
+}
+
+.curtain.right{
+    animation:openRight 2.5s ease-in-out forwards;
+}
+
+@keyframes openLeft{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    100%{
+        transform:translateX(-100%);
+    }
+
+}
+
+@keyframes openRight{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    100%{
+        transform:translateX(100%);
+    }
+
+}
+
+
+/* =====================================================
+   INTRO HEART SCREEN
+===================================================== */
+
+#intro{
+    position:fixed;
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    background:
+        radial-gradient(
+            circle,
+            #291321 0%,
+            #0d0910 50%,
+            #000 100%
+        );
+
+    z-index:10;
+}
+
+#intro.show{
+    display:flex;
+    animation:introFadeIn 1s ease;
+}
+
+@keyframes introFadeIn{
+
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   HEART
+===================================================== */
+
+.heart-area{
+    width:300px;
+    height:300px;
+
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.heart{
+    width:190px;
+    height:190px;
+
+    position:absolute;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4d78,
+            #d4144f,
+            #a00035
+        );
+
+    transform:rotate(-45deg);
+
+    border-radius:22px;
+
+    box-shadow:
+        0 0 25px rgba(255,55,110,.7),
+        0 0 60px rgba(255,55,110,.4),
+        0 0 100px rgba(255,55,110,.15);
+
+    animation:heartbeat 1.6s infinite;
+}
+
+.heart::before,
+.heart::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:190px;
+    height:190px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4d78,
+            #d4144f,
+            #a00035
+        );
+
+    border-radius:50%;
+}
+
+.heart::before{
+    top:-95px;
+    left:0;
+}
+
+.heart::after{
+    top:0;
+    left:95px;
+}
+
+
+/* =====================================================
+   HEART TEXT
+===================================================== */
+
+.heart-text{
+
+    position:relative;
+    z-index:5;
+
+    color:white;
+
+    font-size:28px;
+    font-weight:bold;
+
+    text-align:center;
+
+    line-height:1.4;
+
+    text-shadow:
+        0 3px 15px rgba(0,0,0,.6);
+}
+
+.heart-text small{
+    display:block;
+    font-size:25px;
+    margin-top:8px;
+}
+
+@keyframes heartbeat{
+
+    0%,
+    100%{
+        transform:rotate(-45deg) scale(1);
+    }
+
+    50%{
+        transform:rotate(-45deg) scale(1.07);
+    }
+
+}
+
+
+/* =====================================================
+   HEART OPENING
+===================================================== */
+
+#intro.opening .heart{
+
+    animation:
+        heartOpening 3s ease-in-out forwards;
+
+}
+
+#intro.opening .heart-text{
+
+    animation:
+        textOpening 1s ease forwards;
+
+}
+
+@keyframes heartOpening{
+
+    0%{
+        transform:rotate(-45deg) scale(1);
+        opacity:1;
+    }
+
+    25%{
+        transform:rotate(-45deg) scale(1.12);
+        opacity:1;
+    }
+
+    50%{
+        transform:rotate(-45deg) scale(1.35);
+        opacity:1;
+    }
+
+    75%{
+        transform:rotate(-45deg) scale(2);
+        opacity:.7;
+    }
+
+    100%{
+        transform:rotate(-45deg) scale(6);
+        opacity:0;
+    }
+
+}
+
+@keyframes textOpening{
+
+    0%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    60%{
+        opacity:1;
+        transform:scale(1.15);
+    }
+
+    100%{
+        opacity:0;
+        transform:scale(1.6);
+    }
+
+}
+
+
+/* =====================================================
+   BIRTHDAY SCREEN
+===================================================== */
+
+#birthday{
+
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    z-index:20;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.65)
+        ),
+        url("husband.jpeg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+#birthday.show{
+
+    display:flex;
+
+    animation:birthdayAppear 1.5s ease;
+
+}
+
+@keyframes birthdayAppear{
+
+    from{
+        opacity:0;
+        transform:scale(1.08);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   PHOTO OVERLAY
+===================================================== */
+
+#birthday::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 10%,
+            rgba(0,0,0,.65) 90%
+        );
+
+    z-index:0;
+
+}
+
+
+/* =====================================================
+   BIRTHDAY CONTENT
+===================================================== */
+
+.birthday-content{
+
+    position:relative;
+    z-index:5;
+
+    width:90%;
+    max-width:850px;
+
+    padding:40px 25px;
+
+    animation:contentPop 1.5s ease;
+
+}
+
+@keyframes contentPop{
+
+    from{
+        opacity:0;
+        transform:translateY(50px) scale(.8);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   CUTE BADGE
+===================================================== */
+
+.cute-badge{
+
+    display:inline-block;
+
+    padding:8px 20px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.15);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    backdrop-filter:blur(10px);
+
+    color:white;
+
+    font-size:16px;
+
+    margin-bottom:18px;
+
+}
+
+
+/* =====================================================
+   HAPPY BIRTHDAY
+===================================================== */
+
+.birthday-title{
+
+    font-size:clamp(45px,8vw,90px);
+
+    font-weight:900;
+
+    color:white;
+
+    line-height:1.05;
+
+    text-shadow:
+        0 5px 0 #e91e63,
+        0 10px 25px rgba(0,0,0,.6);
+
+    animation:
+        titleBounce 2s ease-in-out infinite;
+
+}
+
+.birthday-title span{
+
+    color:#ffd54f;
+
+}
+
+@keyframes titleBounce{
+
+    0%,
+    100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+}
+
+
+/* =====================================================
+   SUBTITLE
+===================================================== */
+
+.subtitle{
+
+    margin-top:20px;
+
+    font-size:clamp(20px,4vw,32px);
+
+    color:white;
+
+    font-weight:bold;
+
+    text-shadow:
+        0 3px 12px rgba(0,0,0,.8);
+
+}
+
+.subtitle span{
+    color:#ff7198;
+}
+
+
+/* =====================================================
+   PARTY POPPER
+===================================================== */
+
+.popper{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:90px;
+    height:90px;
+
+    z-index:10;
+
+}
+
+.popper.left{
+    left:15px;
+    transform:rotate(-25deg);
+}
+
+.popper.right{
+    right:15px;
+    transform:scaleX(-1) rotate(-25deg);
+}
+
+.popper-body{
+
+    position:absolute;
+
+    bottom:0;
+    left:0;
+
+    width:60px;
+    height:85px;
+
+    border-radius:10px 10px 25px 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff416c,
+            #ff9f43
+        );
+
+    transform:rotate(-35deg);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.5);
+
+}
+
+.popper-body::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:8px;
+
+    border:
+        2px dashed rgba(255,255,255,.7);
+
+    border-radius:8px;
+
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+.confetti{
+
+    position:absolute;
+
+    width:10px;
+    height:18px;
+
+    top:70%;
+
+    opacity:0;
+
+    z-index:3;
+
+    animation:
+        confettiFly 2.8s ease-out forwards;
+
+}
+
+@keyframes confettiFly{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translate(0,0)
+            rotate(0deg)
+            scale(.5);
+
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            rotate(var(--r))
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   PARTY SPARKLES
+===================================================== */
+
+.sparkle{
+
+    position:absolute;
+
+    color:white;
+
+    font-size:25px;
+
+    animation:
+        sparkleAnimation
+        1.5s ease-in-out
+        infinite;
+
+    z-index:4;
+
+}
+
+@keyframes sparkleAnimation{
+
+    0%,
+    100%{
+        opacity:.2;
+        transform:scale(.6);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.3);
+    }
+
+}
+
+
+/* =====================================================
+   FINAL MESSAGE
+===================================================== */
+
+.final-message{
+
+    margin-top:28px;
+
+    color:white;
+
+    font-size:18px;
+
+    line-height:1.6;
+
+    text-shadow:
+        0 3px 10px rgba(0,0,0,.8);
+
+}
+
+
+/* =====================================================
+   LOVE BUTTON
+===================================================== */
+
+.love-button{
+
+    margin-top:25px;
+
+    padding:14px 32px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff416c,
+            #ff758c
+        );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 30px rgba(255,65,108,.35);
+
+    transition:.3s;
+
+}
+
+.love-button:hover{
+
+    transform:scale(1.08);
+
+}
+
+
+/* =====================================================
+   LOVE MESSAGE
+===================================================== */
+
+#love{
+
+    display:none;
+
+    margin-top:25px;
+
+    color:#ffd54f;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    line-height:1.5;
+
+    text-shadow:
+        0 3px 15px rgba(0,0,0,.7);
+
+    animation:
+        loveAppear 1s ease;
+
+}
+
+@keyframes loveAppear{
+
+    from{
+        opacity:0;
+        transform:scale(.5);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+.floating-heart{
+
+    position:fixed;
+
+    bottom:-40px;
+
+    z-index:50;
+
+    font-size:20px;
+
+    pointer-events:none;
+
+    animation:
+        floatingHeart 5s linear forwards;
+
+}
+
+@keyframes floatingHeart{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(0)
+            scale(.5);
+
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translateY(-110vh)
+            scale(1.5);
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .heart-area{
+
+        width:270px;
+        height:270px;
+
+    }
+
+    .heart{
+
+        width:165px;
+        height:165px;
+
+    }
+
+    .heart::before,
+    .heart::after{
+
+        width:165px;
+        height:165px;
+
+    }
+
+    .heart::before{
+        top:-82px;
+    }
+
+    .heart::after{
+        left:82px;
+    }
+
+    .heart-text{
+        font-size:22px;
+    }
+
+    .subtitle{
+        font-size:20px;
+    }
+
+    .popper{
+        transform:scale(.75);
+    }
+
+    .popper.right{
+        transform:scaleX(-1) scale(.75) rotate(-25deg);
+    }
+
+}
