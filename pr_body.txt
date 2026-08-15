@@ -1,0 +1,11 @@
+## Summary
+
+This PR separates the inline CSS from `index.html` into a dedicated external stylesheet.
+
+## Changes
+- Moved all CSS from the inline `<style>` block in `index.html` into an external `style.css` file
+- Added a `<link rel="stylesheet" href="style.css">` reference in the HTML head
+- Fixed the background image reference from `husband.jpg` to `husband.jpeg` (matching the actual file in the repository)
+- The HTML markup and JavaScript remain in `index.html`
+
+This change keeps the design and functionality identical while improving code organization and maintainability.
